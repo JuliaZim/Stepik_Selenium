@@ -14,4 +14,4 @@ prompt.send_keys("My answer") #Для отправки в доп окно
 #Получить текст из окна:
 alert = browser.switch_to.alert
 alert_text = alert.text
-
+ тест
