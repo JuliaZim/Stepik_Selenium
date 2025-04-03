@@ -1,0 +1,6 @@
+При открытии новой вкладки, webDriver продолжит работать на старой.
+Переход на новое окно:
+browser.switch_to.window(window_name)
+
+Узнать имя новой вкладки:
+new_window = browser.window_handles[1]

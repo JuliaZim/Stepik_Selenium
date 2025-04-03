@@ -1,0 +1,16 @@
+# HTML списка:
+<label for="dropdown">Выберите язык программирования:</label>
+<select id="dropdown" class="custom-select">
+    <option selected>--</option>
+    <option value="1">Python</option>
+    <option value="2">Java</option>
+    <option value="3">JavaScript</option>
+</select> #
+# Для того, чтобы выбрать элемент списка, нужно сначать нажать на лэйбл списка, а потом на элемент списка
+browser.find_element(By.TAG_NAME, "select").click()
+browser.find_element(By.CSS_SELECTOR, "option:nth-child(2)").click()
+
+#либо с помощь класса Select Вначале мы должны инициализировать новый объект, передав в него WebElement с тегом select. Далее можно найти любой вариант из списка с помощью метода select_by_value(value):
+from selenium.webdriver.support.ui import Select
+select = Select(browser.find_element(By.TAG_NAME, "select"))
+select.select_by_value("1") # ищем элемент с текстом "Python"

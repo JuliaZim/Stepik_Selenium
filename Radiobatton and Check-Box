@@ -1,0 +1,23 @@
+# в html создаются с помощью инпутов. Радиобаттоны объеденены с помощью name. Checked - радиобаттон выбран
+# <input type="radio" name="language" value="python" checked>
+# <input type="radio" name="language" value="selenium">
+# <input type="checkbox" checked>
+
+# чтобы выбрать радиобаттон или чек-бокс, нужно кликнуть на него:
+option1 = browser.find_element(By.CSS_SELECTOR, "[value='python']")
+option1.click()
+
+# либо если рядом с чек-боксом или радиобаттоном есть кликабельный label:
+# <input type="radio" id="python" name="language" checked>
+# <label for="python">Python</label>
+option1 = browser.find_element(By.CSS_SELECTOR, "[for='java']")
+option1.click()
+
+# чтобы проверить выбрано ли значение:
+people_radio = browser.find_element(By.ID, "peopleRule")
+people_checked = people_radio.get_attribute("checked")
+print("value of people radio: ", people_checked)
+assert people_checked is not None, "People radio is not selected by default"
+
+# Аналогично проверяются задизейбленные объекты: <button type="submit" class="btn btn-default" disabled>Submit</button>
+button_check = button.get_attribute("disabled")

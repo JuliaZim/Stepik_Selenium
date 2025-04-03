@@ -1,0 +1,17 @@
+#Alert - только с кнопкой ОК
+#Confirm - принять или отказаться
+#prompt - имеет дополнительное окно ввода
+
+Вызвать алерт с помощью JS:
+alert('Hello!');
+
+#Переключаемся на алерт и принимаем его:
+alert\confirm\prompt = browser.switch_to.alert
+alert.accept() #Для согласия
+confirm.dismiss() #Для отказа
+prompt.send_keys("My answer") #Для отправки в доп окно
+
+#Получить текст из окна:
+alert = browser.switch_to.alert
+alert_text = alert.text
+
