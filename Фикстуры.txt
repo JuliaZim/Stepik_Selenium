@@ -30,3 +30,41 @@ def browser():
     print("\nstart browser for test..")
     browser = webdriver.Chrome()
     return browser
+и вызываем  в методе(тесте)  находящемся в классе, передав в параметр
+class TestMainPage1():
+    # вызываем фикстуру в тесте, передав ее как параметр
+    def test_guest_should_see_login_link(self, browser):
+        browser.get(link)
+        browser.find_element(By.CSS_SELECTOR, "#login_link")
+Финализаторы:
+Один из вариантов финализатора — использование ключевого слова Python: yield.
+После завершения теста, который вызывал фикстуру, выполнение фикстуры продолжится со строки, следующей за строкой со словом yield:
+@pytest.fixture
+def browser():
+    print("\nstart browser for test..")
+    browser = webdriver.Chrome()
+    yield browser
+    # этот код выполнится после завершения теста
+    print("\nquit browser..")
+    browser.quit()
+
+    Есть альтернативный способ вызова teardown кода с помощью встроенной фикстуры request и ее метода addfinalizer
+    https://docs.pytest.org/en/latest/how-to/fixtures.html#adding-finalizers-directly
+    import pytest
+
+@pytest.fixture
+def my_fixture(request):
+    # setup код (выполняется перед тестом)
+    print("Setup my_fixture")
+
+    def teardown():
+        # teardown код (выполняется после теста)
+        print("Teardown my_fixture")
+
+    request.addfinalizer(teardown)
+
+    return "some resource"  # Можно вернуть какой-то ресурс для использования в тесте
+
+def test_using_fixture(my_fixture):
+    print(f"Using fixture: {my_fixture}")
+    assert my_fixture == "some resource"
